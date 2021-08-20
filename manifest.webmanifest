@@ -1,0 +1,24 @@
+{
+  "short_name": "Busca Parejas",
+  "name": "Busca parejas - Mejora tu memoria",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icon-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "description": "Aplicación basada en el juego de cartas que consiste en encontrar las parejas de cartas en el menor tiempo posible."
+}

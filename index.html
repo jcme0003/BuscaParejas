@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+        maximum-scale=1, minimum-scale=1, user-scalable=no" />
+        <title>Encuentra las parejas - PHASER</title>
+        <link rel="manifest" href="manifest.webmanifest" />
+        <link rel="stylesheet" href="src/css/styles.css" />
+    </head>
+    <body>
+        <div id="ventana-instalar">
+            <div class="ventana-contenido">
+                <span class="cerrar">&times;</span>
+                <p>¿Quiere instalar la aplicación?</p>
+                <button class="btn btn-azul" onclick="offlinePrompt()">Instalar</button>
+                <button class="btn btn-blanco cerrar">Cancelar</button>
+            </div>
+        </div>
+        <div id="contenedor"></div>
+        <script src="src/installable.js"></script>
+        <script src="src/phaser.min.js"></script>
+        <script src="src/main.js" type="module"></script>
+        <script src="src/load-sw.js"></script>
+    </body>
+</html>

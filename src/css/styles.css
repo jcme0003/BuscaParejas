@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+}
+#ventana-instalar {
+    background: rgba(33, 41, 52, .85);
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    display: none;
+    position: fixed;
+    z-index: 999;
+}
+#ventana-instalar .ventana-contenido {
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(33, 41, 52, .75);
+    box-sizing: content-box;
+    margin: auto;
+    max-width: 400px;
+    min-width: 320px !important;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding: 1.3rem;
+    font-size: 1.3rem;
+}
+.cerrar {
+    cursor: pointer;
+}
+span.cerrar:hover {
+    font-weight: bold;
+}
+.btn {
+    cursor: pointer;
+    -webkit-appearance: button;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-azul {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-azul:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    text-decoration: none;
+}
+.btn-blanco {
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+}
+.btn-blanco:hover {
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+    text-decoration: none;
+}
