@@ -1,0 +1,124 @@
+{
+    "anims": [
+        {
+            "key": "loading-bar-start",
+            "type": "frames",
+            "repeat": -1,
+            "frameRate": 12,
+            "frames": [
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_0"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_1"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_2"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_3"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_4"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_5"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_6"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_7"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_8"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_9"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_10"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_11"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_12"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_13"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_14"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_15"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_16"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_17"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_18"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_19"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_20"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_21"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_22"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_23"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_24"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_25"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_26"
+                },
+                {
+                    "key": "sprite-loading-bar",
+                    "frame": "sprite-loading-bar_27"
+                }
+            ]
+        }
+    ]
+}
