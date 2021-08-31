@@ -18,6 +18,9 @@ const config = {
     version: '0.0.1',
     type: Phaser.AUTO,
     backgroundColor: '#5ed5fb',
+    dom: {
+        createContainer: true
+    },
     scene: [Bootloader, Preload, Menu, Play, Reload, Ranking]
 };
 
