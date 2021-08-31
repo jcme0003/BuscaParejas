@@ -31,6 +31,9 @@ class Play extends Phaser.Scene {
 
         this.minCarta = 1;
         this.baraja = [];
+        // Cartas sobre la mesa
+        // this.cartasMesa = 0;
+
         this.tablero = [];
         this.reparteCartas();
         this.actualizaSegundos();
@@ -85,16 +88,30 @@ class Play extends Phaser.Scene {
                 duration: 1000,
                 ease: 'Bounce',
                 onComplete: () => {
+                    this.checkRanking();
                     this.scene.start('Reload');
                 }
             });
         });
 
         this.tablero_button_home.on(Phaser.Input.Events.POINTER_UP, () => {
+            this.checkRanking();
             this.scene.start('Menu');
         });
 
         this.escuchaEventosTablero();
+    }
+
+    checkRanking() {
+        this.nombre = this.inputText.getChildByName('nombre').value;
+        console.log(this.nombre);
+
+        if(this.nombre !== '') {
+            console.log(this.nombre);
+
+        } else {
+            this.nombre = 'Anónimo';
+        }
     }
 
     /**
@@ -126,7 +143,8 @@ class Play extends Phaser.Scene {
         if(this.parejasEncontradas === this.parejas) {
             console.log('VICTORIA');
             clearInterval(this.segundero);
-            this.tablero_text.setText('PUNTUACION\nFINAL: ' + (this.puntuacion - (this.segundos/2)));
+            //this.tablero_text.setText('PUNTUACION\nFINAL: ' + (this.puntuacion + this.segundos));
+            this.tablero_text.setText('PUNTUACION\nFINAL:' + (this.puntuacion - (this.segundos/2)));
             this.add.tween({
                 targets: this.tableroContainer,
                 scaleX: 1,
