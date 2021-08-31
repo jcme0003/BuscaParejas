@@ -1,3 +1,5 @@
+import options from "../share/options.js";
+
 class Menu extends Phaser.Scene {
     constructor() {
         super('Menu');
@@ -40,21 +42,24 @@ class Menu extends Phaser.Scene {
         ]);
 
         this.add.tween({
-            targets: [opciones],
+            targets: opciones,
             ease: 'Bounce',
             y: 150,
             duration: 1250
         });
 
         this.facil.on(Phaser.Input.Events.POINTER_UP, () => {
+            options.dificultad = 'facil';
             this.scene.start('Play');
         });
 
         this.medio.on(Phaser.Input.Events.POINTER_UP, () => {
+            options.dificultad = 'medio';
             this.scene.start('Play');
         });
 
         this.dificil.on(Phaser.Input.Events.POINTER_UP, () => {
+            options.dificultad = 'dificil';
             this.scene.start('Play');
         });
 
