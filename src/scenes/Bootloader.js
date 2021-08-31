@@ -13,6 +13,9 @@ class Bootloader extends Phaser.Scene {
         this.load.animation('loadingBarAnim', 'sprite-loading-bar_anim.json');
         this.load.image('font', 'fonts/font.png');
         this.load.json('fontConfig', 'fonts/font.json');
+        this.load.audio('flipcard', 'flipcard.wav');
+        this.load.audio('win', 'win.mp3');
+        this.load.audio('draw', 'draw.mp3');
         this.load.setPath('./assets/imgs/');
         this.load.image(['titulo-preload', 'logo', 'menu', 'facil', 'medio', 'dificil', 'clasificacion', 'tablero_win', 'reload', 'home', 'stars']);
         this.load.setPath('./assets/imgs/cards');
