@@ -15,12 +15,124 @@ class Menu extends Phaser.Scene {
     
     create() {
         this.logo = this.add.image(50, 50, 'logo');
+        this.info = this.add.image(300, 49, 'info').setInteractive();
+        this.opciones = this.add.image(388, 50, 'options').setInteractive();
+
         const cabecera = this.add.container(0, 0);
         cabecera.add([
-            this.logo
+            this.logo,
+            this.info,
+            this.opciones
         ]);
 
-        this.texto = this.add.bitmapText(0, 0, 'futilePro', 'NUEVA PARTIDA', 16, 1);
+        this.opciones_tablero = this.add.image(0, 0, 'tablero_options').setInteractive();
+        this.opciones_text = this.add.bitmapText(0, 0, 'futilePro', 'OPCIONES:', 20, 1);
+        this.opciones_sound = this.add.image(0, 0, 'sound_' + options.audio).setInteractive();
+        this.opciones_card_1 = this.add.image(0, 0, 'card-1-0').setInteractive();
+        this.opciones_card_2 = this.add.image(0, 0, 'card-2-1').setInteractive();
+        this.opciones_ok_button = this.add.image(0, 0, 'ok_button').setInteractive();
+
+        Phaser.Display.Align.In.Center(this.opciones_text, this.opciones_tablero, 0, -130);
+        Phaser.Display.Align.To.BottomCenter(this.opciones_sound, this.opciones_text, 0, 10);
+        Phaser.Display.Align.To.BottomLeft(this.opciones_card_1, this.opciones_sound, 20, 0);
+        Phaser.Display.Align.To.BottomRight(this.opciones_card_2, this.opciones_sound, 20, 0);
+        Phaser.Display.Align.To.BottomCenter(this.opciones_ok_button, this.opciones_sound, 0, 100);
+
+        this.opcionesContainer = this.add.container(this.centroCanvas.width,
+            this.centroCanvas.height);
+        
+        this.opcionesContainer.add([
+            this.opciones_tablero,
+            this.opciones_text,
+            this.opciones_sound,
+            this.opciones_card_1,
+            this.opciones_card_2,
+            this.opciones_ok_button
+        ]);
+        this.opcionesContainer.setDepth(2);
+        this.opcionesContainer.setScale(0);
+
+        this.opciones.on(Phaser.Input.Events.POINTER_UP, () => {
+            this.add.tween({
+                targets: this.opcionesContainer,
+                scaleX: 1,
+                scaleY: 1,
+                ease: 'Bounce',
+                duration: 500
+            });
+        });
+
+        this.opciones_sound.on(Phaser.Input.Events.POINTER_UP, () => {
+            options.audio = !options.audio;
+            console.log(options.audio);
+            this.opciones_sound.frame = this.textures.getFrame('sound_' + options.audio);
+            console.log(this.opciones_sound);
+        });
+
+        this.opciones_card_1.on(Phaser.Input.Events.POINTER_UP, () => {
+            options.baraja = 1;
+            this.opciones_card_1.frame = this.textures.getFrame('card-1-0');
+            this.opciones_card_2.frame = this.textures.getFrame('card-2-1');
+        });
+
+        this.opciones_card_2.on(Phaser.Input.Events.POINTER_UP, () => {
+            options.baraja = 2;
+            this.opciones_card_1.frame = this.textures.getFrame('card-1-1');
+            this.opciones_card_2.frame = this.textures.getFrame('card-2-0');
+        });
+
+        this.opciones_ok_button.on(Phaser.Input.Events.POINTER_UP, () => {
+            this.add.tween({
+                targets: this.opcionesContainer,
+                scaleX: 0,
+                scaleY: 0,
+                ease: 'Bounce',
+                duration: 500
+            });
+        });
+
+        this.info_ventana = this.add.image(0, 0, 'info_ventana').setInteractive();
+        this.info_titulo = this.add.bitmapText(0, 0, 'futilePro', 'REGLAS', 20, 1);
+        this.info_text = this.add.bitmapText(0, 0, 'futilePro', 'El juego de las parejas\nconsiste en buscar las\nparejas de cartas\nde dos en dos. Segun\nel nivel de dificultad\nel numero de parejas\nvaria, siendo de 4 en\nfacil, 6 en medio\ny 8 parejas en dificil.\nLa puntuacion final\nse obtiene restandole\nlos puntos conseguidos\na los segundos tardados\nen encontrar todas\nlas parejas.', 12, 0);
+        this.info_close = this.add.image(0, 0, 'close').setInteractive();
+
+        Phaser.Display.Align.In.Center(this.info_titulo, this.info_ventana, 0, -130);
+        Phaser.Display.Align.To.BottomCenter(this.info_text, this.info_titulo, 0, 30);
+        Phaser.Display.Align.To.BottomCenter(this.info_close, this.info_text, 0, 15);
+
+        this.infoContainer = this.add.container(this.centroCanvas.width,
+            this.centroCanvas.height);
+        
+        this.infoContainer.add([
+            this.info_ventana,
+            this.info_titulo,
+            this.info_text,
+            this.info_close
+        ]);
+        this.infoContainer.setDepth(2);
+        this.infoContainer.setScale(0);
+
+        this.info.on(Phaser.Input.Events.POINTER_UP, () => {
+            this.add.tween({
+                targets: this.infoContainer,
+                scaleX: 1,
+                scaleY: 1,
+                ease: 'Bounce',
+                duration: 500
+            });
+        });
+
+        this.info_close.on(Phaser.Input.Events.POINTER_UP, () => {
+            this.add.tween({
+                targets: this.infoContainer,
+                scaleX: 0,
+                scaleY: 0,
+                ease: 'Bounce',
+                duration: 500
+            });
+        });
+
+        this.texto = this.add.bitmapText(0, 0, 'futilePro', 'SELECCIONE\nDIFICULTAD', 26, 1);
         this.facil = this.add.image(0, 0, 'facil').setInteractive();
         this.medio = this.add.image(0, 0, 'medio').setInteractive();
         this.dificil = this.add.image(0, 0, 'dificil').setInteractive();
