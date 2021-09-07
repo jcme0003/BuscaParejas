@@ -1,0 +1,14 @@
+{
+    "ranking": [
+        {"nombre": "Ana Mari", "puntos": 27},
+        {"nombre": "Pepe", "puntos": 26},
+        {"nombre": "Oscar", "puntos": 20},
+        {"nombre": "Mario", "puntos": 19},
+        {"nombre": "Anonimo", "puntos": 17},
+        {"nombre": "Juan", "puntos": 15},
+        {"nombre": "Felipe", "puntos": 12},
+        {"nombre": "Hugo", "puntos": 8},
+        {"nombre": "Victor", "puntos": 4},
+        {"nombre": "Fernando", "puntos": 3}
+    ]
+}
