@@ -2,10 +2,6 @@ class Bootloader extends Phaser.Scene {
     constructor() {
         super('Bootloader');
     }
-
-    init() {
-        console.log('Scene Bootloader');
-    }
     
     preload() {
         this.load.setPath('./assets/');

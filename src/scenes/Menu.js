@@ -10,7 +10,6 @@ class Menu extends Phaser.Scene {
             width: this.sys.game.config.width / 2,
             height: this.sys.game.config.height / 2
         };
-        console.log('Scene Menu');
     }
     
     create() {
@@ -64,9 +63,7 @@ class Menu extends Phaser.Scene {
 
         this.opciones_sound.on(Phaser.Input.Events.POINTER_UP, () => {
             options.audio = !options.audio;
-            console.log(options.audio);
             this.opciones_sound.frame = this.textures.getFrame('sound_' + options.audio);
-            console.log(this.opciones_sound);
         });
 
         this.opciones_card_1.on(Phaser.Input.Events.POINTER_UP, () => {
@@ -84,6 +81,43 @@ class Menu extends Phaser.Scene {
         this.opciones_ok_button.on(Phaser.Input.Events.POINTER_UP, () => {
             this.add.tween({
                 targets: this.opcionesContainer,
+                scaleX: 0,
+                scaleY: 0,
+                ease: 'Bounce',
+                duration: 500
+            });
+        });
+
+        // Ventana bienvenida
+        this.ini_ventana = this.add.image(0, 0, 'info_ventana').setInteractive();
+        this.ini_titulo = this.add.bitmapText(0, 0, 'futilePro', 'BIENVENIDO', 20, 1);
+        this.ini_texto = this.add.bitmapText(0, 0, 'futilePro', 'Bienvenido! esta\nusted utilizando\nuna aplicación basada\nen la tecnologia PWA.\nEsto significa que\npuede ser instalada\ndesde su navegador,\npara ello pulse en\nel boton Instalar\nque le aparece en\nla parte superior. Si\nsu navegador no\nmuestra esta ventana,\no boton, acceda al\nmenu de opciones de\nsu navegador y busque\nla opcion de instalar.', 12, 0);
+        this.ini_close = this.add.image(0, 0, 'close').setInteractive();
+
+        Phaser.Display.Align.In.Center(this.ini_titulo, this.ini_ventana, 0, -130);
+        Phaser.Display.Align.To.BottomCenter(this.ini_texto, this.ini_titulo, 0, 30);
+        Phaser.Display.Align.To.BottomCenter(this.ini_close, this.ini_texto, 0, 0);
+
+        this.iniContainer = this.add.container(this.centroCanvas.width,
+            this.centroCanvas.height);
+
+        this.iniContainer.add([
+            this.ini_ventana,
+            this.ini_titulo,
+            this.ini_texto,
+            this.ini_close
+        ]);
+        this.iniContainer.setDepth(2);
+        if(options.nuevaVisita === true) {
+            options.nuevaVisita = false;
+            this.iniContainer.setScale(1);
+        } else {
+            this.iniContainer.setScale(0);
+        }
+
+        this.ini_close.on(Phaser.Input.Events.POINTER_UP, () => {
+            this.add.tween({
+                targets: this.iniContainer,
                 scaleX: 0,
                 scaleY: 0,
                 ease: 'Bounce',
@@ -132,7 +166,7 @@ class Menu extends Phaser.Scene {
             });
         });
 
-        this.texto = this.add.bitmapText(0, 0, 'futilePro', 'SELECCIONE\nDIFICULTAD', 26, 1);
+        this.texto = this.add.bitmapText(0, 0, 'futilePro', 'SELECCIONA\nDIFICULTAD', 26, 1);
         this.facil = this.add.image(0, 0, 'facil').setInteractive();
         this.medio = this.add.image(0, 0, 'medio').setInteractive();
         this.dificil = this.add.image(0, 0, 'dificil').setInteractive();

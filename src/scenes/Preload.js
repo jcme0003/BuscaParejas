@@ -3,10 +3,6 @@ class Preload extends Phaser.Scene {
         super('Preload');
     }
 
-    init(){
-        console.log('Scene Preload');
-    }
-
     create() {
         this.titulo = this.add.image(220, 300, 'titulo-preload');
         this.loadingBar = this.add.sprite(220, 400, 'sprite-loading-bar');

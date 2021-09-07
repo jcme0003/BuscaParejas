@@ -12,8 +12,6 @@ class Ranking extends Phaser.Scene {
             width: this.sys.game.config.width / 2,
             height: this.sys.game.config.height / 2
         };
-        console.log('Scene Ranking');
-        
     }
     
     create() {
@@ -30,15 +28,7 @@ class Ranking extends Phaser.Scene {
         });
 
         this.stars = this.add.image(this.centroCanvas.width, 120, 'stars');
-
         this.ranking = JSON.parse(this.cache.text.get('ranking'));
-        console.log(this.ranking);
-
-        this.ranking.ranking.forEach(element => {
-            console.log(element.nombre);
-            console.log(element.puntos);
-        });
-
         this.pintaRanking();
     }
 

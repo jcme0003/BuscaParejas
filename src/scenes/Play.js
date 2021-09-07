@@ -10,8 +10,6 @@ class Play extends Phaser.Scene {
     }
 
     init() {
-        console.log('Scene Play');
-
         this.audioWin = this.sound.add('win');
         this.audioFlipCard = this.sound.add('flipcard');
         this.audioDraw = this.sound.add('draw');
@@ -35,8 +33,6 @@ class Play extends Phaser.Scene {
 
         this.minCarta = 1;
         this.baraja = [];
-        // Cartas sobre la mesa
-        // this.cartasMesa = 0;
 
         this.tablero = [];
         this.reparteCartas();
@@ -57,6 +53,7 @@ class Play extends Phaser.Scene {
         ]);
 
         this.menu.on(Phaser.Input.Events.POINTER_UP, () => {
+            clearInterval(this.segundero);
             this.scene.start('Menu');
         });
 
@@ -88,6 +85,7 @@ class Play extends Phaser.Scene {
             if(options.audio === true) {
                 this.audioDraw.play();
             }
+            this.checkRanking();
             this.add.tween({
                 targets: this.tableroContainer,
                 scaleX: 0,
@@ -95,7 +93,6 @@ class Play extends Phaser.Scene {
                 duration: 1000,
                 ease: 'Bounce',
                 onComplete: () => {
-                    this.checkRanking();
                     this.scene.start('Reload');
                 }
             });
@@ -109,16 +106,27 @@ class Play extends Phaser.Scene {
         this.escuchaEventosTablero();
     }
 
+    /**
+     * Hace una petición POST a ranking.php y comprueba si la puntuación del jugador actual
+     * es una de las 10 mejores o no. En caos de estar entre las 10 mejores la agrega
+     * al fichero ranking.json.
+     */
     checkRanking() {
         this.nombre = this.inputText.getChildByName('nombre').value;
-        console.log(this.nombre);
 
-        if(this.nombre !== '') {
-            console.log(this.nombre);
-
-        } else {
+        if(this.nombre === '') {
             this.nombre = 'Anónimo';
         }
+
+        var url = 'ranking.php';
+        var data = new FormData();
+        data.append('nombre', this.nombre);
+        data.append('puntos', this.puntuacion);
+
+        fetch(url, {
+            method: 'POST',
+            body: data
+        }).then(res => res.json());
     }
 
     /**
@@ -131,12 +139,18 @@ class Play extends Phaser.Scene {
         }, 1000);
     }
 
+    /**
+     * Desactiva propiedad interactive de las cartas
+     */
     disableInteractiveCartas() {
         this.tablero.map((carta) => {
             carta.disableInteractive();
         });
     }
 
+    /**
+     * Activa propiedad interactive de las cartas
+     */
     setInteractiveCartas() {
         this.tablero.map((carta) => {
             carta.setInteractive();
@@ -148,12 +162,10 @@ class Play extends Phaser.Scene {
      */
     checkVictoria() {
         if(this.parejasEncontradas === this.parejas) {
-            console.log('VICTORIA');
             clearInterval(this.segundero);
             if(options.audio === true) {
                 this.audioWin.play();
             }
-            //this.tablero_text.setText('PUNTUACION\nFINAL: ' + (this.puntuacion + this.segundos));
             this.tablero_text.setText('PUNTUACION\nFINAL:' + (this.puntuacion - (this.segundos/2)));
             this.add.tween({
                 targets: this.tableroContainer,
@@ -186,7 +198,6 @@ class Play extends Phaser.Scene {
      */
     checkCartas(valor) {
         this.iguales = true;
-        console.log('intento: ' + this.intento);
         this.valorIntentos[this.intento] = valor;
 
         if(this.intento == options.maxIntentos - 1) {
@@ -199,21 +210,23 @@ class Play extends Phaser.Scene {
 
             if(this.iguales === false) {
                 this.disableInteractiveCartas();
-                console.log('ENTRADA');
                 setTimeout(() => {
                     if(options.audio === true) {
                         this.audioFlipCard.play();
                     }
                     for(var i = 0; i < options.maxIntentos; i++) {
-                        console.log(this.cartasIntentos[i]);
-                        console.log('i: ' + i);
                         this.cartasIntentos[i].setInteractive();
-                        console.log(this.cartasIntentos[i].frame);
                         this.cartasIntentos[i].frame = this.textures.getFrame('bck-card-1');
                     }
                     this.setInteractiveCartas();
                 }, 1000);
-                this.actualizaPuntos(2, false);
+                if(options.dificultad === 'facil') {
+                    this.actualizaPuntos(2, false);
+                } else if(options.dificultad === 'medio') {
+                    this.actualizaPuntos(4, false);
+                } else {
+                    this.actualizaPuntos(6, false);
+                }
             } else {
                 this.parejasEncontradas++;
                 this.actualizaPuntos(10, true)
@@ -236,10 +249,6 @@ class Play extends Phaser.Scene {
                     this.audioFlipCard.play();
                 }
                 this.valor = options.tablero[this.obtenerPosTablero(i).x][this.obtenerPosTablero(i).y];
-                console.log('Pulsada la carta ' + i);
-                console.log('La carta pulsada esta en la fila: ' + this.obtenerPosTablero(i).x);
-                console.log('La carta pulsada esta en la columna: ' + this.obtenerPosTablero(i).y);
-                console.log('El valor de la carta es: ' + this.valor);
                 carta.frame = this.textures.getFrame('card-' + options.baraja + '-' + this.valor);
                 this.cartasIntentos[this.intento] = carta;
                 this.checkCartas(this.valor);
@@ -253,7 +262,6 @@ class Play extends Phaser.Scene {
     sacaCartaRnd() {
         do {
             this.carta = Phaser.Math.Between(this.minCarta, this.parejas);
-            console.log(this.carta + this.baraja[this.carta] >= 2);
         } while(this.baraja[this.carta] >= 2);
 
         this.baraja[this.carta] ++;

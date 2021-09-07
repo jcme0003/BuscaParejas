@@ -8,7 +8,8 @@ const options = {
     ],
     maxIntentos: 2,
     audio: true,
-    baraja: 1
+    baraja: 1,
+    nuevaVisita: true
 };
 
 export default options;

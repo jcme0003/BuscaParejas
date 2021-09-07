@@ -1,14 +1,1 @@
-{
-    "ranking": [
-        {"nombre": "Ana Mari", "puntos": 27},
-        {"nombre": "Pepe", "puntos": 26},
-        {"nombre": "Oscar", "puntos": 20},
-        {"nombre": "Mario", "puntos": 19},
-        {"nombre": "Anonimo", "puntos": 17},
-        {"nombre": "Juan", "puntos": 15},
-        {"nombre": "Felipe", "puntos": 12},
-        {"nombre": "Hugo", "puntos": 8},
-        {"nombre": "Victor", "puntos": 4},
-        {"nombre": "Fernando", "puntos": 3}
-    ]
-}
+{"ranking":[{"nombre":"primero","puntos":68},{"nombre":"Grandeeee","puntos":68},{"nombre":"pruebaaaa","puntos":64},{"nombre":"El maki","puntos":54},{"nombre":"aefsdfsdfs","puntos":52},{"nombre":"no esta mal","puntos":50},{"nombre":"v","puntos":36},{"nombre":"An\u00f3nimo","puntos":36},{"nombre":"facil","puntos":34},{"nombre":"Jose","puntos":34}]}
