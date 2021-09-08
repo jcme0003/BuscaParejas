@@ -102,16 +102,27 @@ class Play extends Phaser.Scene {
         this.escuchaEventosTablero();
     }
 
+    /**
+     * Hace una petición POST a ranking.php y comprueba si la puntuación del jugador actual
+     * es una de las 10 mejores o no. En caos de estar entre las 10 mejores la agrega
+     * al fichero ranking.json.
+     */
     checkRanking() {
         this.nombre = this.inputText.getChildByName('nombre').value;
-        console.log(this.nombre);
 
-        if(this.nombre !== '') {
-            console.log(this.nombre);
-
-        } else {
+        if(this.nombre === '') {
             this.nombre = 'Anónimo';
         }
+
+        var url = 'ranking.php';
+        var data = new FormData();
+        data.append('nombre', this.nombre);
+        data.append('puntos', this.puntuacion);
+
+        fetch(url, {
+            method: 'POST',
+            body: data
+        }).then(res => res.json());
     }
 
     /**
