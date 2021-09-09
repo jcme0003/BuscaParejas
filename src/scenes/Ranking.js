@@ -4,7 +4,9 @@ class Ranking extends Phaser.Scene {
     }
 
     preload() {
-        this.load.text('ranking', './src/share/ranking.json');
+        this.url = './src/share/ranking.json?' + new Date().getTime();
+        this.r = new Date().getTime();
+        this.load.text(this.r, this.url);
     }
 
     init() {
@@ -28,7 +30,7 @@ class Ranking extends Phaser.Scene {
         });
 
         this.stars = this.add.image(this.centroCanvas.width, 120, 'stars');
-        this.ranking = JSON.parse(this.cache.text.get('ranking'));
+        this.ranking = JSON.parse(this.cache.text.get(this.r));
         this.pintaRanking();
     }
 

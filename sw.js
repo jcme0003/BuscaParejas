@@ -10,7 +10,8 @@ var files = [
     './src/installable.js',
     './assets/icon-192.png',
     './assets/icon-256.png',
-    './assets/icon-512.png'
+    './assets/icon-512.png',
+    './assets/imgs/favicon.ico'
 ];
 
 self.addEventListener('install', function(event) {

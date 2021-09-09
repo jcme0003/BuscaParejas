@@ -121,7 +121,7 @@ class Play extends Phaser.Scene {
         var url = 'ranking.php';
         var data = new FormData();
         data.append('nombre', this.nombre);
-        data.append('puntos', this.puntuacion);
+        data.append('puntos', (this.puntuacion - (this.segundos/2)));
 
         fetch(url, {
             method: 'POST',
@@ -229,7 +229,7 @@ class Play extends Phaser.Scene {
                 }
             } else {
                 this.parejasEncontradas++;
-                this.actualizaPuntos(10, true)
+                this.actualizaPuntos(10, true);
                 this.checkVictoria();
             }
         } else {
